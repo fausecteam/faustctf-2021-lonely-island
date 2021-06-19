@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://server/projectile.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.15
+
+[node name="KinematicBody" type="KinematicBody"]
+collision_mask = 3073
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+process_priority = 1
+shape = SubResource( 1 )

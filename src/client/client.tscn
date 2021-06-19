@@ -1,0 +1,374 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://client/client.gd" type="Script" id=1]
+[ext_resource path="res://client/game.tscn" type="PackedScene" id=2]
+[ext_resource path="res://client/assets/bg.png" type="Texture" id=3]
+[ext_resource path="res://client/assets/NugieRomantic-BEoV.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://client/default_theme.tres" type="Theme" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+use_mipmaps = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[node name="Remote" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="TextureRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 25.0
+margin_bottom = 73.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 1 )
+text = "Lonely Island"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Subtitle" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 70.0
+margin_bottom = 86.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 2 )
+text = "Capture the flag"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" parent="." instance=ExtResource( 2 )]
+
+[node name="Connect" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -60.0
+margin_right = 125.0
+margin_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Connect"]
+margin_right = 250.0
+margin_bottom = 23.0
+text = "Host:"
+
+[node name="IP" type="LineEdit" parent="Connect"]
+margin_top = 27.0
+margin_right = 250.0
+margin_bottom = 60.0
+
+[node name="Connect" type="Button" parent="Connect"]
+margin_top = 64.0
+margin_right = 250.0
+margin_bottom = 93.0
+text = "Connect"
+
+[node name="Status" type="Label" parent="Connect"]
+margin_top = 97.0
+margin_right = 250.0
+margin_bottom = 120.0
+
+[node name="Connected" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -31.0
+margin_right = 125.0
+margin_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Register" type="Button" parent="Connected"]
+margin_right = 250.0
+margin_bottom = 29.0
+text = "Register"
+
+[node name="Login" type="Button" parent="Connected"]
+margin_top = 33.0
+margin_right = 250.0
+margin_bottom = 62.0
+text = "Login"
+
+[node name="Login" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -108.5
+margin_right = 125.0
+margin_bottom = 108.5
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Login"]
+margin_right = 250.0
+margin_bottom = 23.0
+text = "Name:"
+
+[node name="Name" type="LineEdit" parent="Login"]
+margin_top = 27.0
+margin_right = 250.0
+margin_bottom = 60.0
+
+[node name="Label2" type="Label" parent="Login"]
+margin_top = 64.0
+margin_right = 250.0
+margin_bottom = 87.0
+text = "Password:"
+
+[node name="Password" type="LineEdit" parent="Login"]
+margin_top = 91.0
+margin_right = 250.0
+margin_bottom = 124.0
+secret = true
+
+[node name="Button" type="Button" parent="Login"]
+margin_top = 128.0
+margin_right = 250.0
+margin_bottom = 157.0
+text = "Login"
+
+[node name="Status" type="Label" parent="Login"]
+margin_top = 161.0
+margin_right = 250.0
+margin_bottom = 184.0
+
+[node name="Back" type="Button" parent="Login"]
+margin_top = 188.0
+margin_right = 250.0
+margin_bottom = 217.0
+text = "Back"
+
+[node name="Register" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -186.0
+margin_right = 125.0
+margin_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Register"]
+margin_right = 250.0
+margin_bottom = 23.0
+text = "Name:"
+
+[node name="Name" type="LineEdit" parent="Register"]
+margin_top = 27.0
+margin_right = 250.0
+margin_bottom = 60.0
+
+[node name="Label2" type="Label" parent="Register"]
+margin_top = 64.0
+margin_right = 250.0
+margin_bottom = 87.0
+text = "About You:"
+
+[node name="Bio" type="TextEdit" parent="Register"]
+margin_top = 91.0
+margin_right = 250.0
+margin_bottom = 151.0
+rect_min_size = Vector2( 0, 60 )
+
+[node name="Label3" type="Label" parent="Register"]
+margin_top = 155.0
+margin_right = 250.0
+margin_bottom = 178.0
+text = "Password:"
+
+[node name="Password" type="LineEdit" parent="Register"]
+margin_top = 182.0
+margin_right = 250.0
+margin_bottom = 215.0
+secret = true
+
+[node name="Label4" type="Label" parent="Register"]
+margin_top = 219.0
+margin_right = 250.0
+margin_bottom = 242.0
+text = "Repeat Password:"
+
+[node name="Password2" type="LineEdit" parent="Register"]
+margin_top = 246.0
+margin_right = 250.0
+margin_bottom = 279.0
+secret = true
+
+[node name="Button" type="Button" parent="Register"]
+margin_top = 283.0
+margin_right = 250.0
+margin_bottom = 312.0
+text = "Register"
+
+[node name="Status" type="Label" parent="Register"]
+margin_top = 316.0
+margin_right = 250.0
+margin_bottom = 339.0
+
+[node name="Back" type="Button" parent="Register"]
+margin_top = 343.0
+margin_right = 250.0
+margin_bottom = 372.0
+text = "Back"
+
+[node name="LoggedIn" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -31.0
+margin_right = 125.0
+margin_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join" type="Button" parent="LoggedIn"]
+margin_right = 250.0
+margin_bottom = 29.0
+text = "Join the game"
+
+[node name="Friends" type="Button" parent="LoggedIn"]
+margin_top = 33.0
+margin_right = 250.0
+margin_bottom = 62.0
+text = "Manage Friends"
+
+[node name="Exit" type="Button" parent="LoggedIn"]
+margin_right = 12.0
+margin_bottom = 29.0
+text = "Quit"
+
+[node name="AddFriendDialog" type="ConfirmationDialog" parent="."]
+margin_left = 396.0
+margin_top = 441.0
+margin_right = 628.0
+margin_bottom = 441.0
+window_title = "Add friend"
+
+[node name="Name" type="LineEdit" parent="AddFriendDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 224.0
+margin_bottom = 41.0
+
+[node name="Friends" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -127.0
+margin_top = -141.5
+margin_right = 127.0
+margin_bottom = 141.5
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Friends"]
+margin_right = 392.0
+margin_bottom = 250.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Friends/HBoxContainer"]
+margin_right = 300.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 300, 250 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Friends/HBoxContainer/ScrollContainer"]
+margin_right = 150.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Friends/HBoxContainer"]
+margin_left = 304.0
+margin_right = 392.0
+margin_bottom = 250.0
+
+[node name="Add" type="Button" parent="Friends/HBoxContainer/VBoxContainer"]
+margin_right = 88.0
+margin_bottom = 29.0
+text = "Add friend"
+
+[node name="Refresh" type="Button" parent="Friends/HBoxContainer/VBoxContainer"]
+margin_top = 33.0
+margin_right = 88.0
+margin_bottom = 62.0
+text = "Refresh"
+
+[node name="Back" type="Button" parent="Friends"]
+margin_top = 254.0
+margin_right = 392.0
+margin_bottom = 283.0
+text = "Back"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+margin_right = 83.0
+margin_bottom = 58.0
+[connection signal="pressed" from="Connect/Connect" to="." method="_on_Connect_pressed"]
+[connection signal="pressed" from="Connected/Register" to="." method="_on_Register_pressed"]
+[connection signal="pressed" from="Connected/Login" to="." method="_on_Login_pressed"]
+[connection signal="pressed" from="Login/Button" to="." method="login"]
+[connection signal="pressed" from="Login/Back" to="." method="_on_Login_Back_pressed"]
+[connection signal="pressed" from="Register/Button" to="." method="register"]
+[connection signal="pressed" from="Register/Back" to="." method="_on_Register_Back_pressed"]
+[connection signal="pressed" from="LoggedIn/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="LoggedIn/Friends" to="." method="_on_Friends_pressed"]
+[connection signal="pressed" from="LoggedIn/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="confirmed" from="AddFriendDialog" to="." method="_on_AddFriendDialog_confirmed"]
+[connection signal="pressed" from="Friends/HBoxContainer/VBoxContainer/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Friends/HBoxContainer/VBoxContainer/Refresh" to="." method="update_friendlist"]
+[connection signal="pressed" from="Friends/Back" to="." method="_on_Friends_Back_pressed"]

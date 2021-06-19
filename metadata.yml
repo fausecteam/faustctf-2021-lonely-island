@@ -1,0 +1,26 @@
+# Human-readable name of the service
+name: Lonely Island
+# Name of the service for usage in paths, usernames etc.: Should only consist of lowercase alphanumeric
+# characters, must be identical to the (URL) project name of the GitLab repo
+slug: lonely-island
+authors:
+  - Florian Kothmeier <florian.kothmeier@fau.de>
+
+install:
+  # These will be run on the Vulnbox after extracting "dist_root" (from the build) to the root file system,
+  # installing Debian packages and creating the service user
+  postinst_commands:
+    - install -o lonely-island -g lonely-island -m 700 -d "${DATA_DIR}/data"
+    - chmod 600 "${DATA_DIR}/data/players" "${DATA_DIR}/data/friendlist"
+    - chown lonely-island:lonely-island "${DATA_DIR}/data/players" "${DATA_DIR}/data/friendlist"
+    - systemctl enable lonely-island.service
+  # Whether to insert a firewall rule not allowing the service user to establish outgoing network connections
+  # This should generally be enabled, except for services which need outgoing connections
+  prevent_outgoing_connections: True
+
+checker:
+  script_path: checker/lonely-island-checker.py
+  # Upper bound of how long the Checker Script takes to run (for a single team)
+  # Used for scheduling checks within a tick, executions taking longer *may* get terminated
+  max_duration: 60
+  pip_packages: []

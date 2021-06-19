@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://client/player.gd" type="Script" id=1]
+[ext_resource path="res://client/assets/FlintlockPistol.glb" type="PackedScene" id=2]
+[ext_resource path="res://client/assets/gun-shot.wav" type="AudioStream" id=3]
+[ext_resource path="res://client/assets/pirate.glb" type="PackedScene" id=4]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("HitIndicator:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.141176, 0, 0 ), Color( 1, 0.141176, 0, 0.784314 ), Color( 1, 0.141176, 0, 0 ) ]
+}
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+resource_name = "flag"
+flags_unshaded = true
+params_cull_mode = 2
+
+[node name="Player" type="KinematicBody"]
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.4, 0 )
+shape = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="RespawnScreen" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RespawnScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.0
+margin_top = -107.0
+margin_right = 41.0
+margin_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You are dead"
+align = 1
+
+[node name="Label2" type="Label" parent="RespawnScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.5
+margin_top = 43.0
+margin_right = 70.5
+margin_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You will respawn soon"
+align = 1
+
+[node name="Shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="HitIndicator" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.141176, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hit = SubResource( 2 )
+
+[node name="pirate" parent="." instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.25 )
+
+[node name="BoneAttachment" type="BoneAttachment" parent="pirate/Armature/Skeleton" index="7"]
+transform = Transform( -0.991215, 0.0537874, 0.120833, -0.132262, -0.398145, -0.907737, -0.000715666, -0.915744, 0.401761, 0.21679, 0.781946, 0.000281293 )
+bone_name = "right_arm"
+
+[node name="FlintlockPistol" parent="pirate/Armature/Skeleton/BoneAttachment" instance=ExtResource( 2 )]
+transform = Transform( 5.3682e-05, -0.00991966, -0.0743411, 0.0686808, -0.0298609, 0.00403407, -0.0301321, -0.0680803, 0.00906249, -0.028203, 0.641306, -0.241983 )
+
+[node name="BoneAttachment2" type="BoneAttachment" parent="pirate/Armature/Skeleton" index="8"]
+transform = Transform( 0.999909, -0.0134326, 0.000760786, 0.0134327, 0.993521, -0.112855, 0.000760081, 0.112855, 0.993611, -2.46629e-15, 0.761913, -2.06888e-08 )
+bone_name = "head"
+
+[node name="Flag" type="MeshInstance" parent="pirate/Armature/Skeleton/BoneAttachment2"]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 0, 1, 0.5 )
+visible = false
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[editable path="pirate"]
